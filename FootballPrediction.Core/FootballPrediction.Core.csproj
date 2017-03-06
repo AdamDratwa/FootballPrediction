@@ -45,11 +45,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Domain\ApiElement.cs" />
+    <Compile Include="Domain\Player.cs" />
     <Compile Include="Domain\Team.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ApiCaller.cs" />
+    <Compile Include="Services\PlayersRepository.cs" />
     <Compile Include="Services\HttpProvider.cs" />
     <Compile Include="Services\Interfaces\IApiCaller.cs" />
+    <Compile Include="Services\Interfaces\IPlayersRepository.cs" />
     <Compile Include="Services\Interfaces\IHttpProvider.cs" />
   </ItemGroup>
   <ItemGroup>
