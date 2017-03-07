@@ -44,16 +44,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Domain\ApiElement.cs" />
+    <Compile Include="ApiResponses\LinkReponses\Fixtures.cs" />
+    <Compile Include="ApiResponses\LinkReponses\Link.cs" />
+    <Compile Include="ApiResponses\LinkReponses\Links.cs" />
+    <Compile Include="ApiResponses\LinkReponses\Players.cs" />
+    <Compile Include="ApiResponses\LinkReponses\Self.cs" />
+    <Compile Include="ApiResponses\PlayersResponse.cs" />
+    <Compile Include="ApiResponses\TeamResponse.cs" />
+    <Compile Include="ApiResponses\TeamsResponse.cs" />
+    <Compile Include="ApiResponses\ApiElement.cs" />
     <Compile Include="Domain\Player.cs" />
     <Compile Include="Domain\Team.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ApiCaller.cs" />
+    <Compile Include="Services\Interfaces\ITeamsRepository.cs" />
+    <Compile Include="Services\Interfaces\ITeamRepository.cs" />
     <Compile Include="Services\PlayersRepository.cs" />
     <Compile Include="Services\HttpProvider.cs" />
     <Compile Include="Services\Interfaces\IApiCaller.cs" />
     <Compile Include="Services\Interfaces\IPlayersRepository.cs" />
     <Compile Include="Services\Interfaces\IHttpProvider.cs" />
+    <Compile Include="Services\TeamRepository.cs" />
+    <Compile Include="Services\TeamsRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

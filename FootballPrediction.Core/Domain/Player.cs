@@ -1,6 +1,8 @@
-﻿namespace FootballPrediction.Core.Domain
+﻿using FootballPrediction.Core.ApiResponses;
+
+namespace FootballPrediction.Core.Domain
 {
-    public class Player : ApiElement
+    public class Player
     {
         public int Id { get; set; }
         public string Name { get; set; }

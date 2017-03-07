@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using FootballPrediction.Core.ApiResponses;
 using FootballPrediction.Core.Domain;
 using FootballPrediction.Core.Services.Interfaces;
 
@@ -7,9 +8,9 @@ namespace FootballPrediction.Core.Services
 {
     public class PlayersRepository : IPlayersRepository
     {
-        private readonly IApiCaller<Player> _apiCaller;
+        private readonly IApiCaller<PlayersResponse> _apiCaller;
 
-        public PlayersRepository(IApiCaller<Player> apiCaller)
+        public PlayersRepository(IApiCaller<PlayersResponse> apiCaller)
         {
             _apiCaller = apiCaller;
         }
@@ -17,7 +18,7 @@ namespace FootballPrediction.Core.Services
         {
             var query = $"teams/{teamId}/players";
             var players = await _apiCaller.Get(query);
-            return players;
+            return players.Players;
         }
     }
 }

@@ -1,6 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using FootballPrediction.Core.Domain;
+﻿using System.Threading.Tasks;
+using FootballPrediction.Core.ApiResponses;
 using FootballPrediction.Core.Services.Interfaces;
 using Newtonsoft.Json;
 
@@ -14,21 +13,7 @@ namespace FootballPrediction.Core.Services
         {
             _httpProvider = httpProvider;
         }
-        public async Task<IEnumerable<T>> Get(string query)
-        {
-            IEnumerable<T> items;
-
-            using (var client = _httpProvider.GetClient())
-            {
-                var content = await client.GetAsync(query);
-                var stringContent = await content.Content.ReadAsStringAsync();
-                items = JsonConvert.DeserializeObject<IEnumerable<T>>(stringContent);
-            }
-
-            return items;
-        }
-
-        public async Task<T> GetSingle(string query)
+        public async Task<T> Get(string query)
         {
             T item;
 

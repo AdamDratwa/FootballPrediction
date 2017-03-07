@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using FootballPrediction.Core.ApiResponses;
 using FootballPrediction.Core.Domain;
 using FootballPrediction.Core.Services;
 using NUnit.Framework;
@@ -12,7 +13,7 @@ namespace FootballPrediction.Core.Tests.Services
         public async Task GetPlayers_ShouldGetListOfPlayersByTeamId()
         {
             var httpProvider = new HttpProvider();
-            var apiCaller = new ApiCaller<Player>(httpProvider);
+            var apiCaller = new ApiCaller<PlayersResponse>(httpProvider);
             var playersRepository = new PlayersRepository(apiCaller);
             var players = await playersRepository.GetPlayers(66);
             Assert.That(players, Is.Not.Null);
