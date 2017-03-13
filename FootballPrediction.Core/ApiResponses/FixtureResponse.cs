@@ -1,6 +1,6 @@
 ﻿namespace FootballPrediction.Core.ApiResponses
 {
-    public class FixtureResponse
+    public class FixtureResponse : ApiElement
     {
         public int Id { get; set; }
         public int CompetitionId { get; set; }

@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="ApiResponses\CompetitionsResponse.cs" />
     <Compile Include="ApiResponses\FixtureResponse.cs" />
+    <Compile Include="ApiResponses\FixturesResponse.cs" />
     <Compile Include="ApiResponses\LinkReponses\CompetitionLinks.cs" />
     <Compile Include="ApiResponses\LinkReponses\Fixtures.cs" />
     <Compile Include="ApiResponses\LinkReponses\Link.cs" />
@@ -64,7 +65,6 @@
     <Compile Include="Domain\Team.cs" />
     <Compile Include="Mappers\IMapper.cs" />
     <Compile Include="Mappers\Mapper.cs" />
-    <Compile Include="Mappers\PlayersMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ApiCaller.cs" />
     <Compile Include="Services\Interfaces\ITeamsRepository.cs" />

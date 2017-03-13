@@ -10,13 +10,16 @@ namespace FootballPrediction.Core.Services
     {
         private readonly IApiCaller<TeamResponse> _teamApiCaller;
         private readonly IApiCaller<PlayersResponse> _playersApiCaller;
+        private readonly IApiCaller<FixturesResponse> _fixturesResponse;
 
         public TeamRepository(
             IApiCaller<TeamResponse> teamApiCaller, 
-            IApiCaller<PlayersResponse> playersApiCaller)
+            IApiCaller<PlayersResponse> playersApiCaller,
+            IApiCaller<FixturesResponse> fixturesApiCaller)
         {
             _teamApiCaller = teamApiCaller;
             _playersApiCaller = playersApiCaller;
+            _fixturesResponse = fixturesApiCaller;
         }
         public async Task<Team> GetTeam(int id)
         {
@@ -29,8 +32,15 @@ namespace FootballPrediction.Core.Services
                 Name = responce.Name,
                 ShortName = responce.ShortName,
                 SquadMarketValue = responce.SquadMarketValue,
-                Players = await GetPlayers(responce)               
+                Players = await GetPlayers(responce),
+                Fixtures = await GetFixtures(responce)
             };
+        }
+
+        private async Task<IEnumerable<Fixture>> GetFixtures(TeamResponse responce)
+        {
+            var fixtures = await _fixturesResponse.Get(responce._Links.Fixtures.Href);
+            return fixtures.Fixtures;
         }
 
         private async Task<IEnumerable<Player>> GetPlayers(TeamResponse responce)
