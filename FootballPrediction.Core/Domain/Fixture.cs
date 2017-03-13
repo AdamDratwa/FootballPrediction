@@ -2,9 +2,8 @@
 
 namespace FootballPrediction.Core.Domain
 {
-    public class Fixture
+    public class Fixture : Entity
     {
-        public int Id { get; set; }
         public int CompetitionId { get; set; }
         public string Date { get; set; }
         public int Matchday { get; set; }

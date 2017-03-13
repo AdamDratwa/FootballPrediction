@@ -1,8 +1,7 @@
 ﻿namespace FootballPrediction.Core.Domain
 {
-    public class Competition
+    public class Competition : Entity
     {
-        public int Id { get; set; }
         public string Caption { get; set; }
         public string League { get; set; }
         public string Year { get; set; }

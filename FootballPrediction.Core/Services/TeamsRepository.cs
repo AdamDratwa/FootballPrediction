@@ -36,7 +36,7 @@ namespace FootballPrediction.Core.Services
                     Name = team.Name,
                     ShortName = team.ShortName,
                     SquadMarketValue = team.SquadMarketValue,
-                    Players = _playersApiCaller.Get($"teams/{id}")
+                    Players = _playersApiCaller.Get($"teams/{team.Id}/players")
                 };
             }
         }
