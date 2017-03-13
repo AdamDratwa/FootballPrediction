@@ -12,7 +12,9 @@ namespace FootballPrediction.Core.Services
         private readonly IApiCaller<TeamsResponse> _apiCaller;
         private readonly IApiCaller<PlayersResponse> _playersApiCaller;
 
-        public TeamsRepository(IApiCaller<TeamsResponse> apiCaller, IApiCaller<PlayersResponse> playersApiCaller)
+        public TeamsRepository(
+            IApiCaller<TeamsResponse> apiCaller, 
+            IApiCaller<PlayersResponse> playersApiCaller)
         {
             _apiCaller = apiCaller;
             _playersApiCaller = playersApiCaller;
@@ -22,23 +24,31 @@ namespace FootballPrediction.Core.Services
         {
             var query = $"competitions/{competitionsId}/teams";
             var responce = await _apiCaller.Get(query);
-            return GetFullInfoAboutTeams(responce.Teams);
+            return await GetFullInfoAboutTeams(responce.Teams);
         }
 
-        private IEnumerable<Team> GetFullInfoAboutTeams(IEnumerable<Team> teams)
+        private async Task<IEnumerable<Team>> GetFullInfoAboutTeams(IEnumerable<Team> teams)
         {
+            var listOfTeams = new List<Team>();
             foreach (var team in teams)
             {
-                yield return new Team
+                listOfTeams.Add(new Team
                 {
                     Id = team.Id,
                     CrestUrl = team.CrestUrl,
                     Name = team.Name,
                     ShortName = team.ShortName,
                     SquadMarketValue = team.SquadMarketValue,
-                    Players = _playersApiCaller.Get($"teams/{team.Id}/players")
-                };
+                    Players = await GetPlayers(team)
+                });
             }
+            return listOfTeams;
+        }
+
+        private async Task<IEnumerable<Player>> GetPlayers(Team team)
+        {
+            var playersResponse = await _playersApiCaller.Get($"teams/{team.Id}/players");
+            return playersResponse.Players;
         }
     }
 }

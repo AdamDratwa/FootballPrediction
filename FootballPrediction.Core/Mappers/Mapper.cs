@@ -19,8 +19,8 @@ namespace FootballPrediction.Core.Mappers
                 foreach (var property in apiElementProperties)
                 {
                     var propertyName = property.Name;
-                    var propertyValue = property.GetValue(null);
-                    instance.GetType().GetProperty(propertyName).SetValue(propertyValue);
+                    var propertyValue = property.GetValue(apiElement);
+                    instance.GetType().GetProperty(propertyName)?.SetValue(instance, propertyValue);
                 }
             }
             return instance;
