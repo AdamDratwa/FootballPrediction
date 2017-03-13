@@ -1,8 +1,6 @@
-﻿using FootballPrediction.Core.ApiResponses;
-
-namespace FootballPrediction.Core.Domain
+﻿namespace FootballPrediction.Core.ApiResponses
 {
-    public class Fixture
+    public class FixtureResponse
     {
         public int Id { get; set; }
         public int CompetitionId { get; set; }

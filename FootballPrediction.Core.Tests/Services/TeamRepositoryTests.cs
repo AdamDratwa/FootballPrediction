@@ -12,8 +12,9 @@ namespace FootballPrediction.Core.Tests.Services
         public async Task Get_ShouldGetTeamById()
         {
             var httpProvider = new HttpProvider();
-            var apiCaller = new ApiCaller<TeamResponse>(httpProvider);
-            var teamRepository = new TeamRepository(apiCaller);
+            var teamApiCaller = new ApiCaller<TeamResponse>(httpProvider);
+            var playersTeamApiCaller = new ApiCaller<PlayersResponse>(httpProvider);
+            var teamRepository = new TeamRepository(teamApiCaller, playersTeamApiCaller);
             var team = await teamRepository.GetTeam(66);
             Assert.That(team, Is.Not.Null);
         }

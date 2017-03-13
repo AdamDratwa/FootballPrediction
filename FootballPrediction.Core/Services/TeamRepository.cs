@@ -23,13 +23,13 @@ namespace FootballPrediction.Core.Services
             var query = $"teams/{id}";
             var responce = await _teamApiCaller.Get(query);
             return new Team
-            {
+            {     
+                Id = responce.Id,           
                 CrestUrl = responce.CrestUrl,
                 Name = responce.Name,
                 ShortName = responce.ShortName,
                 SquadMarketValue = responce.SquadMarketValue,
-                Players = await GetPlayers(responce)
-               
+                Players = await GetPlayers(responce)               
             };
         }
 
