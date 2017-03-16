@@ -2,9 +2,8 @@
 
 namespace FootballPrediction.Core.Domain
 {
-    public class Player
+    public class Player : Entity
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public string Position { get; set; }
         public int JerseyNumber { get; set; }
