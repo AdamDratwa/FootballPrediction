@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using FootballPrediction.Core.ApiResponses;
 using FootballPrediction.Core.Domain;
+using FootballPrediction.Core.Mappers;
 using FootballPrediction.Core.Services.Interfaces;
 
 namespace FootballPrediction.Core.Services
@@ -18,7 +20,7 @@ namespace FootballPrediction.Core.Services
         {
             var query = $"teams/{teamId}/players";
             var players = await _apiCaller.Get(query);
-            return players.Players;
+            return players.Players.Select(PlayerMapper.Map);
         }
     }
 }

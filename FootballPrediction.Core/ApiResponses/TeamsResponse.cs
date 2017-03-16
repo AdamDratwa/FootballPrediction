@@ -5,6 +5,6 @@ namespace FootballPrediction.Core.ApiResponses
 {
     public class TeamsResponse : ApiElement
     {
-        public IEnumerable<Team> Teams { get; set; }
+        public IEnumerable<TeamResponse> Teams { get; set; }
     }
 }

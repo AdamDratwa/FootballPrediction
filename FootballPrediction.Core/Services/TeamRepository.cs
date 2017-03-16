@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using FootballPrediction.Core.ApiResponses;
 using FootballPrediction.Core.Domain;
+using FootballPrediction.Core.Mappers;
 using FootballPrediction.Core.Services.Interfaces;
 
 namespace FootballPrediction.Core.Services
@@ -40,13 +42,13 @@ namespace FootballPrediction.Core.Services
         private async Task<IEnumerable<Fixture>> GetFixtures(TeamResponse responce)
         {
             var fixtures = await _fixturesResponse.Get(responce._Links.Fixtures.Href);
-            return fixtures.Fixtures;
+            return fixtures.Fixtures.Select(FixtureMapper.Map);
         }
 
         private async Task<IEnumerable<Player>> GetPlayers(TeamResponse responce)
         {
             var playersResponse = await _playersApiCaller.Get(responce._Links.Players.Href);
-            return playersResponse.Players;
+            return playersResponse.Players.Select(PlayerMapper.Map);
         }
     }
 }

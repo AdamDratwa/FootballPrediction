@@ -1,8 +1,9 @@
-﻿using System.CodeDom.Compiler;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using FootballPrediction.Core.ApiResponses;
 using FootballPrediction.Core.Domain;
+using FootballPrediction.Core.Mappers;
 using FootballPrediction.Core.Services.Interfaces;
 
 namespace FootballPrediction.Core.Services
@@ -24,7 +25,7 @@ namespace FootballPrediction.Core.Services
         {
             var query = $"competitions/{competitionsId}/teams";
             var responce = await _apiCaller.Get(query);
-            return await GetFullInfoAboutTeams(responce.Teams);
+            return await GetFullInfoAboutTeams(responce.Teams.Select(TeamMapper.Map));
         }
 
         private async Task<IEnumerable<Team>> GetFullInfoAboutTeams(IEnumerable<Team> teams)
@@ -48,7 +49,7 @@ namespace FootballPrediction.Core.Services
         private async Task<IEnumerable<Player>> GetPlayers(Team team)
         {
             var playersResponse = await _playersApiCaller.Get($"teams/{team.Id}/players");
-            return playersResponse.Players;
+            return playersResponse.Players.Select(PlayerMapper.Map);
         }
     }
 }
