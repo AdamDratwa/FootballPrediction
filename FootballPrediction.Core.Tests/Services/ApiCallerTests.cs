@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using FootballPrediction.Core.ApiResponses;
+using FootballPrediction.Core.Domain;
 using FootballPrediction.Core.Services;
 using NUnit.Framework;
 
@@ -12,9 +13,9 @@ namespace FootballPrediction.Core.Tests.Services
         public async Task Get_ShouldGetTeamFromApi()
         {
             var httpProvider = new HttpProvider();
-            var apiCaller = new ApiCaller<TeamsResponse>(httpProvider);
-            var team = await apiCaller.Get("competitions/398/teams");
-            Assert.That(team.Teams, Is.Not.Null);
+            var apiCaller = new ApiCaller<TeamResponse>(httpProvider);
+            var teams = await apiCaller.Get("competitions/398/teams");
+            Assert.That(teams, Is.Not.Null);
         }
     }
 }

@@ -60,7 +60,6 @@
     <Compile Include="ApiResponses\Result.cs" />
     <Compile Include="ApiResponses\Stats.cs" />
     <Compile Include="ApiResponses\TeamResponse.cs" />
-    <Compile Include="ApiResponses\TeamsResponse.cs" />
     <Compile Include="ApiResponses\ApiElement.cs" />
     <Compile Include="Domain\Competition.cs" />
     <Compile Include="Domain\Entity.cs" />
@@ -77,13 +76,11 @@
     <Compile Include="Services\CompetitionsRepository.cs" />
     <Compile Include="Services\Interfaces\ICompetitionsRepository.cs" />
     <Compile Include="Services\Interfaces\ITeamsRepository.cs" />
-    <Compile Include="Services\Interfaces\ITeamRepository.cs" />
     <Compile Include="Services\PlayersRepository.cs" />
     <Compile Include="Services\HttpProvider.cs" />
     <Compile Include="Services\Interfaces\IApiCaller.cs" />
     <Compile Include="Services\Interfaces\IPlayersRepository.cs" />
     <Compile Include="Services\Interfaces\IHttpProvider.cs" />
-    <Compile Include="Services\TeamRepository.cs" />
     <Compile Include="Services\TeamsRepository.cs" />
   </ItemGroup>
   <ItemGroup>
