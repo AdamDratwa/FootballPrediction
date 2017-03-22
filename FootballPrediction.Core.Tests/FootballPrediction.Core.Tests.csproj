@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ApiCallerTests.cs" />
+    <Compile Include="Services\CompetitionsRepositoryTests.cs" />
     <Compile Include="Services\PlayersRepositoryTests.cs" />
     <Compile Include="Services\TeamRepositoryTests.cs" />
   </ItemGroup>

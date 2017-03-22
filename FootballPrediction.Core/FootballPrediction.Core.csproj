@@ -44,9 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiResponses\CompetitionResponse.cs" />
     <Compile Include="ApiResponses\CompetitionsResponse.cs" />
     <Compile Include="ApiResponses\FixtureResponse.cs" />
     <Compile Include="ApiResponses\FixturesResponse.cs" />
+    <Compile Include="ApiResponses\LeaguePositionResponse.cs" />
+    <Compile Include="ApiResponses\LeagueTableResponse.cs" />
     <Compile Include="ApiResponses\LinkReponses\CompetitionLinks.cs" />
     <Compile Include="ApiResponses\LinkReponses\Fixtures.cs" />
     <Compile Include="ApiResponses\LinkReponses\Link.cs" />
@@ -56,6 +59,7 @@
     <Compile Include="ApiResponses\PlayerResponse.cs" />
     <Compile Include="ApiResponses\PlayersResponse.cs" />
     <Compile Include="ApiResponses\Result.cs" />
+    <Compile Include="ApiResponses\Stats.cs" />
     <Compile Include="ApiResponses\TeamResponse.cs" />
     <Compile Include="ApiResponses\TeamsResponse.cs" />
     <Compile Include="ApiResponses\ApiElement.cs" />
@@ -65,11 +69,14 @@
     <Compile Include="Domain\GameStatus.cs" />
     <Compile Include="Domain\Player.cs" />
     <Compile Include="Domain\Team.cs" />
+    <Compile Include="Mappers\CompetitionMapper.cs" />
     <Compile Include="Mappers\FixtureMapper.cs" />
     <Compile Include="Mappers\PlayerMapper.cs" />
     <Compile Include="Mappers\TeamMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ApiCaller.cs" />
+    <Compile Include="Services\CompetitionsRepository.cs" />
+    <Compile Include="Services\Interfaces\ICompetitionsRepository.cs" />
     <Compile Include="Services\Interfaces\ITeamsRepository.cs" />
     <Compile Include="Services\Interfaces\ITeamRepository.cs" />
     <Compile Include="Services\PlayersRepository.cs" />
