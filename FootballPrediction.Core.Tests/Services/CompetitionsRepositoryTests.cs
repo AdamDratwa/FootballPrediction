@@ -12,7 +12,7 @@ namespace FootballPrediction.Core.Tests.Services
         public async Task Get_ShouldGetCompetitionsForSeason()
         {
             var httpProvider = new HttpProvider();
-            var competitionsApiCaller = new ApiCaller<CompetitionsResponse>(httpProvider);
+            var competitionsApiCaller = new ApiCaller<CompetitionResponse>(httpProvider);
             var competitionsRepository = new CompetitionsRepository(competitionsApiCaller);
             var competitions = await competitionsRepository.GetCompetitions(2016);
             Assert.That(competitions, Is.Not.Null);

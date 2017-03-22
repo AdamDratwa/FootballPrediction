@@ -45,7 +45,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiResponses\CompetitionResponse.cs" />
-    <Compile Include="ApiResponses\CompetitionsResponse.cs" />
     <Compile Include="ApiResponses\FixtureResponse.cs" />
     <Compile Include="ApiResponses\FixturesResponse.cs" />
     <Compile Include="ApiResponses\LeaguePositionResponse.cs" />

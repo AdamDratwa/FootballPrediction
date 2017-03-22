@@ -10,17 +10,17 @@ namespace FootballPrediction.Core.Services
 {
     public class CompetitionsRepository : ICompetitionsRepository
     {
-        private readonly IApiCaller<CompetitionsResponse> _competitionsApiCaller;
+        private readonly IApiCaller<CompetitionResponse> _competitionsApiCaller;
 
-        public CompetitionsRepository(IApiCaller<CompetitionsResponse> competitionsApiCaller)
+        public CompetitionsRepository(IApiCaller<CompetitionResponse> competitionsApiCaller)
         {
             _competitionsApiCaller = competitionsApiCaller;
         }
         public async Task<IEnumerable<Competition>> GetCompetitions(int seasonYear)
         {
             var query = $"competitions?season={seasonYear}";
-            var responce = await _competitionsApiCaller.Get(query);
-            return responce.Competitions.Select(CompetitionMapper.Map);
+            var responce = await _competitionsApiCaller.GetMany(query);
+            return responce.Select(CompetitionMapper.Map);
         }
     }
 }
