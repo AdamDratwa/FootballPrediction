@@ -2,7 +2,7 @@
 
 namespace FootballPrediction.Core.ApiResponses
 {
-    public class CompetitionsResponse : ApiElement
+    public class CompetitionResponse : ApiElement
     {
         public int Id { get; set; }
         public string Caption { get; set; }

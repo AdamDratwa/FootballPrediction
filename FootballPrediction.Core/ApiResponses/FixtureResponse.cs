@@ -2,7 +2,6 @@
 {
     public class FixtureResponse : ApiElement
     {
-        public int CompetitionId { get; set; }
         public string Date { get; set; }
         public int Matchday { get; set; }
         public string HomeTeamName { get; set; }

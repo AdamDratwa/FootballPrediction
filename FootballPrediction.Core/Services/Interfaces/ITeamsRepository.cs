@@ -7,5 +7,6 @@ namespace FootballPrediction.Core.Services.Interfaces
     public interface ITeamsRepository
     {
         Task<IEnumerable<Team>> GetTeams(int competitionsId);
+        Task<Team> GetTeam(int id);
     }
 }
