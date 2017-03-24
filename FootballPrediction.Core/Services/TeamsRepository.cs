@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FootballPrediction.Core.ApiResponses;
@@ -10,16 +11,19 @@ namespace FootballPrediction.Core.Services
 {
     public class TeamsRepository : ITeamsRepository
     {
-        private readonly IApiCaller<TeamResponse> _apiCaller;
+        private readonly IApiCaller<TeamResponse> _teamApiCaller;
+        private readonly IApiCaller<TeamsResponse> _teamsApiCaller;
         private readonly IApiCaller<PlayersResponse> _playersApiCaller;
         private readonly IApiCaller<FixturesResponse> _fixturesApiCaller;
 
         public TeamsRepository(
-            IApiCaller<TeamResponse> apiCaller, 
+            IApiCaller<TeamResponse> teamApiCaller, 
+            IApiCaller<TeamsResponse> teamsApiCaller,
             IApiCaller<PlayersResponse> playersApiCaller,
             IApiCaller<FixturesResponse> fixturesApiCaller)
         {
-            _apiCaller = apiCaller;
+            _teamApiCaller = teamApiCaller;
+            _teamsApiCaller = teamsApiCaller;
             _playersApiCaller = playersApiCaller;
             _fixturesApiCaller = fixturesApiCaller;
         }
@@ -27,53 +31,41 @@ namespace FootballPrediction.Core.Services
         public async Task<IEnumerable<Team>> GetTeams(int competitionsId)
         {
             var query = $"competitions/{competitionsId}/teams";
-            var responce = await _apiCaller.GetMany(query);
-            return await GetFullInfoAboutTeams(responce.Select(TeamMapper.Map));
+            var responce = await _teamsApiCaller.Get(query);
+            return await GetFullInfoAboutTeams(responce.Teams);
         }
 
         public async Task<Team> GetTeam(int id)
         {
             var query = $"teams/{id}";
-            var responce = await _apiCaller.Get(query);
-            return new Team
-            {
-                Id = responce.Id,
-                CrestUrl = responce.CrestUrl,
-                Name = responce.Name,
-                ShortName = responce.ShortName,
-                SquadMarketValue = responce.SquadMarketValue,
-                Players = await GetPlayers(responce.Id),
-                Fixtures = await GetFixtures(responce)
-            };
+            var responce = await _teamApiCaller.Get(query);
+            return TeamMapper.Map(responce);
         }
 
-        private async Task<IEnumerable<Team>> GetFullInfoAboutTeams(IEnumerable<Team> teams)
+        private async Task<IEnumerable<Team>> GetFullInfoAboutTeams(IEnumerable<TeamResponse> teamsResponses)
         {
-            var listOfTeams = new List<Team>();
-            foreach (var team in teams)
+            var teams = new List<Team>();
+            foreach (var teamResponse in teamsResponses)
             {
-                listOfTeams.Add(new Team
-                {
-                    Id = team.Id,
-                    CrestUrl = team.CrestUrl,
-                    Name = team.Name,
-                    ShortName = team.ShortName,
-                    SquadMarketValue = team.SquadMarketValue,
-                    Players = await GetPlayers(team.Id)
-                });
+                var team = TeamMapper.Map(teamResponse);
+                team.Players = await GetPlayers(teamResponse._Links.Players.Href);
+                team.Fixtures = await GetFixtures(teamResponse._Links.Fixtures.Href);
+                teams.Add(team);
             }
-            return listOfTeams;
+            return teams;
         }
 
-        private async Task<IEnumerable<Player>> GetPlayers(int teamId)
+        private async Task<IEnumerable<Player>> GetPlayers(string link)
         {
-            var playersResponse = await _playersApiCaller.Get($"teams/{teamId}/players");
+            var query = link.Split(new[] {"v1/"}, StringSplitOptions.None)[1];
+            var playersResponse = await _playersApiCaller.Get(query);
             return playersResponse.Players.Select(PlayerMapper.Map);
         }
 
-        private async Task<IEnumerable<Fixture>> GetFixtures(TeamResponse responce)
+        private async Task<IEnumerable<Fixture>> GetFixtures(string link)
         {
-            var fixtures = await _fixturesApiCaller.Get(responce._Links.Fixtures.Href);
+            var query = link.Split(new[] { "v1/" }, StringSplitOptions.None)[1];
+            var fixtures = await _fixturesApiCaller.Get(query);
             return fixtures.Fixtures.Select(FixtureMapper.Map);
         }
     }

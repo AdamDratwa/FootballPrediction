@@ -61,6 +61,7 @@
     <Compile Include="ApiResponses\Stats.cs" />
     <Compile Include="ApiResponses\TeamResponse.cs" />
     <Compile Include="ApiResponses\ApiElement.cs" />
+    <Compile Include="ApiResponses\TeamsResponse.cs" />
     <Compile Include="Domain\Competition.cs" />
     <Compile Include="Domain\Entity.cs" />
     <Compile Include="Domain\Fixture.cs" />
