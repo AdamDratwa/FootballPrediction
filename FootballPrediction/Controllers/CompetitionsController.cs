@@ -17,9 +17,10 @@ namespace FootballPrediction.Controllers
         }
 
         [SwaggerResponse(HttpStatusCode.OK, "Gets active competitions", typeof(IEnumerable<Competition>))]
-        public IEnumerable<Competition> Get()
+        public IHttpActionResult Get()
         {
-            return _competitionsStorage.GetCompetitions();
+            var competitions = _competitionsStorage.GetCompetitions();
+            return Ok(competitions);
         }
     }
 }

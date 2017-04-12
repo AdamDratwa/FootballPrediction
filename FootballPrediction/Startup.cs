@@ -1,6 +1,7 @@
 ﻿using System.Web.Http;
 using Microsoft.Owin;
 using Owin;
+using Swashbuckle.Application;
 
 [assembly: OwinStartup(typeof(FootballPrediction.Startup))]
 
@@ -12,10 +13,10 @@ namespace FootballPrediction
         {
             var configuration = new HttpConfiguration();
             // InitializeCache.Execute(configuration);
-            RegisterSwagger.Execute(configuration);
             ConfigureAuth(app);
             app.UseWebApi(configuration);
             app.UseWelcomePage();
+            RegisterSwagger.Execute(configuration);
         }
     }
 }

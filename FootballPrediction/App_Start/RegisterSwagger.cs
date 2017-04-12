@@ -13,7 +13,7 @@ namespace FootballPrediction
         private static void ConfigureUi(SwaggerUiConfig config)
         {
             config.DocExpansion(DocExpansion.List);
-            config.DisableValidator(); ;
+            config.DisableValidator();
         }
 
         private static void Configure(SwaggerDocsConfig config)
