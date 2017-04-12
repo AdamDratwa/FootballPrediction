@@ -1,13 +1,7 @@
-using FootballPrediction.Core.ApiResponses;
-using FootballPrediction.Core.Services;
-using FootballPrediction.Core.Services.Interfaces;
-using FootballPrediction.Core.Storage;
-using FootballPrediction.Core.Storage.Interfaces;
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(FootballPrediction.Core.Tests.App_Start.NinjectWebCommon), "Start")]
+[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(FootballPrediction.Core.Tests.App_Start.NinjectWebCommon), "Stop")]
 
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(FootballPrediction.App_Start.NinjectWebCommon), "Start")]
-[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(FootballPrediction.App_Start.NinjectWebCommon), "Stop")]
-
-namespace FootballPrediction.App_Start
+namespace FootballPrediction.Core.Tests.App_Start
 {
     using System;
     using System.Web;
@@ -67,15 +61,6 @@ namespace FootballPrediction.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<ICompetitionsStorage>().To<CompetitionsStorage>();
-            kernel.Bind<IApiCaller<CompetitionResponse>>().To<ApiCaller<CompetitionResponse>>();
-            kernel.Bind<IApiCaller<TeamsResponse>>().To<ApiCaller<TeamsResponse>>();
-            kernel.Bind<IApiCaller<FixturesResponse>>().To<ApiCaller<FixturesResponse>>();
-            kernel.Bind<IApiCaller<CompetitionResponse>>().To<ApiCaller<CompetitionResponse>>();
-            kernel.Bind<IHttpProvider>().To<HttpProvider>();
-            kernel.Bind<ICompetitionsRepository>().To<CompetitionsRepository>();
-            kernel.Bind<IPlayersRepository>().To<PlayersRepository>();
-            kernel.Bind<ITeamsRepository>().To<TeamsRepository>();
         }        
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.Owin;
+﻿using System.Web.Http;
+using Microsoft.Owin;
 using Owin;
 
 [assembly: OwinStartup(typeof(FootballPrediction.Startup))]
@@ -9,7 +10,11 @@ namespace FootballPrediction
     {
         public void Configuration(IAppBuilder app)
         {
+            var configuration = new HttpConfiguration();
+            // InitializeCache.Execute(configuration);
+            RegisterSwagger.Execute(configuration);
             ConfigureAuth(app);
+            app.UseWebApi(configuration);
             app.UseWelcomePage();
         }
     }

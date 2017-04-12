@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Net;
 using System.Web.Http;
 using FootballPrediction.Core.Domain;
 using FootballPrediction.Core.Storage.Interfaces;
+using Swashbuckle.Swagger.Annotations;
 
 namespace FootballPrediction.Controllers
 {
@@ -14,6 +16,7 @@ namespace FootballPrediction.Controllers
             _competitionsStorage = competitionsStorage;
         }
 
+        [SwaggerResponse(HttpStatusCode.OK, "Gets active competitions", typeof(IEnumerable<Competition>))]
         public IEnumerable<Competition> Get()
         {
             return _competitionsStorage.GetCompetitions();
