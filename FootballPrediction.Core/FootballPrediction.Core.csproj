@@ -66,13 +66,22 @@
     <Compile Include="Domain\Entity.cs" />
     <Compile Include="Domain\Fixture.cs" />
     <Compile Include="Domain\GameStatus.cs" />
+    <Compile Include="Domain\LeaguePosition.cs" />
+    <Compile Include="Domain\LeagueTable.cs" />
     <Compile Include="Domain\Player.cs" />
     <Compile Include="Domain\Team.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Mappers\CompetitionMapper.cs" />
     <Compile Include="Mappers\FixtureMapper.cs" />
+    <Compile Include="Mappers\LeagueTableMapper.cs" />
     <Compile Include="Mappers\PlayerMapper.cs" />
     <Compile Include="Mappers\TeamMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Services\ApiCaller.cs" />
     <Compile Include="Services\CompetitionsRepository.cs" />
     <Compile Include="Services\Interfaces\ICompetitionsRepository.cs" />
@@ -83,9 +92,16 @@
     <Compile Include="Services\Interfaces\IPlayersRepository.cs" />
     <Compile Include="Services\Interfaces\IHttpProvider.cs" />
     <Compile Include="Services\TeamsRepository.cs" />
+    <Compile Include="Storage\CompetitionsStorage.cs" />
+    <Compile Include="Storage\Interfaces\ICompetitionsStorage.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

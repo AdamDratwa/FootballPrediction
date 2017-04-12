@@ -13,7 +13,9 @@ namespace FootballPrediction.Core.Tests.Services
         {
             var httpProvider = new HttpProvider();
             var competitionsApiCaller = new ApiCaller<CompetitionResponse>(httpProvider);
-            var competitionsRepository = new CompetitionsRepository(competitionsApiCaller);
+            var teamsApiCaller = new ApiCaller<TeamsResponse>(httpProvider);
+            var fixturesApiCaller = new ApiCaller<FixturesResponse>(httpProvider);
+            var competitionsRepository = new CompetitionsRepository(competitionsApiCaller, fixturesApiCaller, teamsApiCaller);
             var competitions = await competitionsRepository.GetCompetitions(2016);
             Assert.That(competitions, Is.Not.Null);
         }
