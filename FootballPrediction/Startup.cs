@@ -12,10 +12,10 @@ namespace FootballPrediction
         public void Configuration(IAppBuilder app)
         {
             var configuration = new HttpConfiguration();
-            // InitializeCache.Execute(configuration);
             ConfigureAuth(app);
             app.UseWebApi(configuration);
             app.UseWelcomePage();
+            RouteConfig.RegisterRoutes(configuration);
             RegisterSwagger.Execute(configuration);
         }
     }

@@ -14,6 +14,7 @@ namespace FootballPrediction.Core.Services
         {
             _httpProvider = httpProvider;
         }
+
         public async Task<T> Get(string query)
         {
             T item;

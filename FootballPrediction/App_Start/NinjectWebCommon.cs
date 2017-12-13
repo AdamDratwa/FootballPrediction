@@ -16,6 +16,7 @@ namespace FootballPrediction.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
+    using System.Web.Http;
 
     public static class NinjectWebCommon 
     {
@@ -47,7 +48,7 @@ namespace FootballPrediction.App_Start
         {
             var kernel = new StandardKernel();
             try
-            {
+            { 
                 kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
 
